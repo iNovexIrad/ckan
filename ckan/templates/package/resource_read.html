@@ -30,6 +30,12 @@
             {% if h.check_access('package_update', {'id':pkg.id }) %}
               <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>
             {% endif %}
+		<li>
+			<a class="btn btn-info" href="{{ "http://10.10.1.187:8080/MatRest/bind?url=" + res.url }}" <!--style="background-color:#143196; background-image:-webkit-gradient(linear,0 0, 0 100%, from(#425aab), to(#143196)); background-image: -moz-linear-gradient(center top , rgb(66, 90, 171), rgb(20, 49, 150)); "-->
+  				<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+					Bind
+   			</a>
+		</li>
             {% if res.url %}
               <li>
                 <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ res.url }}">

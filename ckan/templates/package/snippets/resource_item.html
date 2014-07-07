@@ -5,7 +5,15 @@
 <li class="resource-item" data-id="{{ res.id }}">
   {% block resource_item_title %}
   <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
-    {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+    {% if res.format == "SPARQL" %}
+    	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('http://lab.linkeddata.deri.ie/2011/rdf-logos/png/sparql-128.png') !important; background-size:contain !important;"></span>
+    {% elif res.format == "RQ" %}
+    	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('http://solidthinking.files.wordpress.com/2009/04/rqicon1.jpg') !important; background-size:contain !important;"></span>
+    {% elif res.format == "WAR" %}
+    	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('http://www.wolf-studios.com/media/ApocalypseIcon512.png') !important; background-size:contain !important;"></span>
+    {% else %}
+    	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+    {% endif %}
     {{ h.popular('views', res.tracking_summary.total, min=10) }}
   </a>
   {% endblock %}
@@ -18,7 +26,12 @@
   {% endblock %}
   {% block resource_item_explore %}
   {% if not url_is_edit %}
+  
   <div class="dropdown btn-group">
+    <a class="btn btn-info" href="{{ "http://10.10.1.187:8080/MatRest/bind?url=" + res.url }}"  <!--style="background-color:#143196; background-image:-webkit-gradient(linear,0 0, 0 100%, from(#425aab), to(#143196)); background-image: -moz-linear-gradient(center top , rgb(66, 90, 171), rgb(20, 49, 150)); "-->
+  	<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+	Bind
+    </a>
     <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       <i class="icon-share-alt"></i>
       {{ _('Explore') }}

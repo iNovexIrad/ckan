@@ -29,9 +29,9 @@ Example:
   {% endblock %}
   {% block datasets %}
     {% if group.packages %}
-      <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', group.packages).format(num=group.packages) }}</strong>
+      <strong class="count">{{ ungettext('{num} Resource', '{num} Resources', group.packages).format(num=group.packages) }}</strong>
     {% elif group.packages == 0 %}
-      <span class="count">{{ _('0 Datasets') }}</span>
+      <span class="count">{{ _('0 Resources') }}</span>
     {% endif %}
   {% endblock %}
   {% block link %}
@@ -40,7 +40,7 @@ Example:
   </a>
   {% endblock %}
   {% if group.user_member %}
-    <input name="group_remove.{{ group.id }}" value="{{ _('Remove') }}" type="submit" class="btn btn-danger btn-small media-edit" title="{{ _('Remove dataset from this group') }}"/>
+    <input name="group_remove.{{ group.id }}" value="{{ _('Remove') }}" type="submit" class="btn btn-danger btn-small media-edit" title="{{ _('Remove resource from this group') }}"/>
   {% endif %}
   {% endblock %}
 </li>
