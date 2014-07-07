@@ -61,7 +61,7 @@ def get_snippet_related_type(activity, detail):
 # functions above.
 
 def activity_stream_string_added_tag(context, activity):
-    return _("{actor} added the tag {tag} to the dataset {dataset}")
+    return _("{actor} added the tag {tag} to the resource {dataset}")
 
 def activity_stream_string_changed_group(context, activity):
     return _("{actor} updated the group {group}")
@@ -70,13 +70,13 @@ def activity_stream_string_changed_organization(context, activity):
     return _("{actor} updated the organization {organization}")
 
 def activity_stream_string_changed_package(context, activity):
-    return _("{actor} updated the dataset {dataset}")
+    return _("{actor} updated the resource {dataset}")
 
 def activity_stream_string_changed_package_extra(context, activity):
-    return _("{actor} changed the extra {extra} of the dataset {dataset}")
+    return _("{actor} changed the extra {extra} of the resource {dataset}")
 
 def activity_stream_string_changed_resource(context, activity):
-    return _("{actor} updated the resource {resource} in the dataset {dataset}")
+    return _("{actor} updated the distribution {resource} in the resource {dataset}")
 
 def activity_stream_string_changed_user(context, activity):
     return _("{actor} updated their profile")
@@ -84,7 +84,7 @@ def activity_stream_string_changed_user(context, activity):
 def activity_stream_string_changed_related_item(context, activity):
     if activity['data'].get('dataset'):
         return _("{actor} updated the {related_type} {related_item} of the "
-                "dataset {dataset}")
+                "resource {dataset}")
     else:
         return _("{actor} updated the {related_type} {related_item}")
 
@@ -95,13 +95,13 @@ def activity_stream_string_deleted_organization(context, activity):
     return _("{actor} deleted the organization {organization}")
 
 def activity_stream_string_deleted_package(context, activity):
-    return _("{actor} deleted the dataset {dataset}")
+    return _("{actor} deleted the resource {dataset}")
 
 def activity_stream_string_deleted_package_extra(context, activity):
-    return _("{actor} deleted the extra {extra} from the dataset {dataset}")
+    return _("{actor} deleted the extra {extra} from the resource {dataset}")
 
 def activity_stream_string_deleted_resource(context, activity):
-    return _("{actor} deleted the resource {resource} from the dataset "
+    return _("{actor} deleted the distribution {resource} from the resource "
              "{dataset}")
 
 def activity_stream_string_new_group(context, activity):
@@ -111,19 +111,19 @@ def activity_stream_string_new_organization(context, activity):
     return _("{actor} created the organization {organization}")
 
 def activity_stream_string_new_package(context, activity):
-    return _("{actor} created the dataset {dataset}")
+    return _("{actor} created the resource {dataset}")
 
 def activity_stream_string_new_package_extra(context, activity):
-    return _("{actor} added the extra {extra} to the dataset {dataset}")
+    return _("{actor} added the extra {extra} to the resource {dataset}")
 
 def activity_stream_string_new_resource(context, activity):
-    return _("{actor} added the resource {resource} to the dataset {dataset}")
+    return _("{actor} added the distribution {resource} to the resource {dataset}")
 
 def activity_stream_string_new_user(context, activity):
     return _("{actor} signed up")
 
 def activity_stream_string_removed_tag(context, activity):
-    return _("{actor} removed the tag {tag} from the dataset {dataset}")
+    return _("{actor} removed the tag {tag} from the resource {dataset}")
 
 def activity_stream_string_deleted_related_item(context, activity):
     return _("{actor} deleted the related item {related_item}")
@@ -140,7 +140,7 @@ def activity_stream_string_follow_group(context, activity):
 def activity_stream_string_new_related_item(context, activity):
     if activity['data'].get('dataset'):
         return _("{actor} added the {related_type} {related_item} to the "
-                 "dataset {dataset}")
+                 "resource {dataset}")
     else:
         return _("{actor} added the {related_type} {related_item}")
 

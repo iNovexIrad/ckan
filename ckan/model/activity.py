@@ -115,7 +115,7 @@ def user_activity_list(user_id, limit, offset):
     Return a list of all activities from or about the given user, i.e. where
     the given user is the subject or object of the activity, e.g.:
 
-    "{USER} created the dataset {DATASET}"
+    "{USER} created the resource {DATASET}"
     "{OTHER_USER} started following {USER}"
     etc.
 
@@ -140,8 +140,8 @@ def package_activity_list(package_id, limit, offset):
     Returns all activities  about the given dataset, i.e. where the given
     dataset is the object of the activity, e.g.:
 
-    "{USER} created the dataset {DATASET}"
-    "{USER} updated the dataset {DATASET}"
+    "{USER} created the resource {DATASET}"
+    "{USER} updated the resource {DATASET}"
     etc.
 
     '''
@@ -181,7 +181,7 @@ def group_activity_list(group_id, limit, offset):
     object of the activity, e.g.:
 
     "{USER} updated the group {GROUP}"
-    "{USER} updated the dataset {DATASET}"
+    "{USER} updated the resource {DATASET}"
     etc.
 
     '''
