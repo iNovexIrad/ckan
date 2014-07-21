@@ -8,7 +8,8 @@ function bindData(data){
 		
 		if(data.charAt(0) == ':')
 			data = data.replace(':///', "http://10.10.1.180:5000/");
-		
+		document.getElementById("bindButton").disabled = true;
+		document.getElementById("bindButton").text = "Loading...";
 		data;
 		$.ajax({
 			type: "GET",
@@ -20,9 +21,11 @@ function bindData(data){
 		}).done(function(msg){
 			alert("Bind Success \n" + msg.message);
 			console.log(msg);
+			document.getElementById("bindButton").disabled = false;
 		}).error(function(msg){
 			alert("Bind Error");
 			console.log(msg);
+			document.getElementById("bindButton").disabled = false;
 		});
 
 }
@@ -54,22 +57,22 @@ function bindData(data){
   
   <div class="dropdown btn-group">
 	{% if res.format == "SPARQL" %}
-		<button class="btn btn-info" onclick="bindData('{{res.url}}')">  
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}')">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Register
 		</button>
 	{% elif res.format == "RQ" %}
-		<button class="btn btn-info" onclick="bindData('{{res.url}}')">  
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}')">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Save
 		</button>
 	{% elif res.format == "WAR" %}
-		<button class="btn btn-info" onclick="bindData('{{res.url}}')">  
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}')">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Deploy
 		</button>
 	{% else %}
-		<button class="btn btn-info" onclick="bindData('{{res.url}}')">  
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}')">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Load
 		</button>
