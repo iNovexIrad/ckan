@@ -1,7 +1,36 @@
 {% extends "package/base.html" %}
 
 {% set res = c.resource %}
+<script>
+function bindData(data, type){
 
+		var requestURL = 'http://10.10.1.187:8080/MatRest/bind';
+		
+		if(data.charAt(0) == ':')
+			data = data.replace(':///', "http://10.10.1.180:5000/");
+		document.getElementById("bindButton").disabled = true;
+		document.getElementById("bindButton").text = "Loading...";
+		data;
+
+		$.ajax({
+			type: "GET",
+			url:requestURL,
+			data: {url:data, type:type},
+			dataType:'json',
+			crossDomain: true
+			
+		}).done(function(msg){
+			alert("Bind Success \n" + msg.message);
+			console.log(msg);
+			document.getElementById("bindButton").disabled = false;
+		}).error(function(msg){
+			alert("Bind Error");
+			console.log(msg);
+			document.getElementById("bindButton").disabled = false;
+		});
+
+}
+</script>
 {% block head_extras -%}
   {{ super() }}
   {% set description = h.markdown_extract(res.description, extract_length=200) if res.description else h.markdown_extract(c.package.notes, extract_length=200) %}
@@ -31,10 +60,34 @@
               <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>
             {% endif %}
 		<li>
-			<a class="btn btn-info" href="{{ "http://10.10.1.187:8080/MatRest/bind?url=" + res.url }}" <!--style="background-color:#143196; background-image:-webkit-gradient(linear,0 0, 0 100%, from(#425aab), to(#143196)); background-image: -moz-linear-gradient(center top , rgb(66, 90, 171), rgb(20, 49, 150)); "-->
-  				<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
-					Bind
-   			</a>
+			{% if res.format == "SPARQL" %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'service')">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			Register
+		</button>
+	{% elif res.format == "RQ" %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'query')">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			Save
+		</button>
+	{% elif res.format == "WAR" %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'analytic')">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			Deploy
+		</button>
+	{% else %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', {%if res.resource_type == "ONTOLOGY"%}'ontology'{% else %}'data'{% endif%})">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			
+			Load
+                     {%if res.resource_type == "ONTOLOGY"%}
+			 Ontology
+			{% else %}
+			 Data
+			{% endif%}
+		</button>
+	{% endif %}
+
 		</li>
             {% if res.url %}
               <li>
