@@ -75,6 +75,11 @@ function bindData(data, type){
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Deploy
 		</button>
+        {% elif res.format == "SKEL" %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'skeleton')">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			Register Skeleton
+		</button>
 	{% else %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', {%if res.resource_type == "ONTOLOGY"%}'ontology'{% else %}'data'{% endif%})">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>

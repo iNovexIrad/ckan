@@ -40,6 +40,8 @@ function bindData(data, type){
     	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('http://solidthinking.files.wordpress.com/2009/04/rqicon1.jpg') !important; background-size:contain !important;"></span>
     {% elif res.format == "WAR" %}
     	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('http://www.wolf-studios.com/media/ApocalypseIcon512.png') !important; background-size:contain !important;"></span>
+    {% elif res.format == "SKEL" %}
+	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" style="background:url('/base/images/skeleton.png') !important; background-size:contain !important;"></span>
     {% else %}
     	{{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
     {% endif %}
@@ -72,6 +74,12 @@ function bindData(data, type){
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
 			Deploy
 		</button>
+	{% elif res.format == "SKEL" %}
+		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'skeleton')">  
+			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			Register Skeleton
+		</button>
+
 	{% else %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', {%if res.resource_type == "ONTOLOGY"%}'ontology'{% else %}'data'{% endif%})">  
 			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
