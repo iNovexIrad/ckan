@@ -4,10 +4,10 @@
 <script>
 function bindData(data, type){
 
-		var requestURL = 'http://10.10.1.187:8080/MatRest/bind';
+		var requestURL = 'http://10.10.4.189:8080/MatRest/bind';
 		
 		if(data.charAt(0) == ':')
-			data = data.replace(':///', "http://10.10.1.180:5000/");
+			data = data.replace(':///', "http://10.10.4.188:5000/");
 		document.getElementById("bindButton").disabled = true;
 		document.getElementById("bindButton").text = "Loading...";
 		data;
@@ -62,27 +62,27 @@ function bindData(data, type){
 		<li>
 			{% if res.format == "SPARQL" %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'service')">  
-			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			<i class="icon-external-link" style="background-image:'http://10.10.4.193:8080/images/bind.jpg'"></i>
 			Register
 		</button>
 	{% elif res.format == "RQ" %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'query')">  
-			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			<i class="icon-external-link" style="background-image:'http://10.10.4.193:8080/images/bind.jpg'"></i>
 			Save
 		</button>
 	{% elif res.format == "WAR" %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'analytic')">  
-			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			<i class="icon-external-link" style="background-image:'http://10.10.4.193:8080/images/bind.jpg'"></i>
 			Deploy
 		</button>
         {% elif res.format == "SKEL" %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', 'skeleton')">  
-			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			<i class="icon-external-link" style="background-image:'http://10.10.4.193:8080/images/bind.jpg'"></i>
 			Register Skeleton
 		</button>
 	{% else %}
 		<button id="bindButton" class="btn btn-info" onclick="bindData('{{res.url}}', {%if res.resource_type == "ONTOLOGY"%}'ontology'{% else %}'data'{% endif%})">  
-			<i class="icon-external-link" style="background-image:'http://10.10.1.176:8080/images/bind.jpg'"></i>
+			<i class="icon-external-link" style="background-image:'http://10.10.4.193:8080/images/bind.jpg'"></i>
 			
 			Load
                      {%if res.resource_type == "ONTOLOGY"%}
